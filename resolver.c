@@ -178,6 +178,7 @@ int rr_to_wire(dns_rr rr, unsigned char *wire, int query_only) {
 	 * OUTPUT: the length of the wire-formatted resource record.
 	 *
 	 */
+	
 }
 
 unsigned short create_dns_query(char *qname, dns_rr_type qtype, unsigned char *wire) {
@@ -192,6 +193,7 @@ unsigned short create_dns_query(char *qname, dns_rr_type qtype, unsigned char *w
 	 *               message should be constructed
 	 * OUTPUT: the length of the DNS wire message
 	 */
+	printf("Qname: %s", qname);
 }
 
 dns_answer_entry *get_answer_address(char *qname, dns_rr_type qtype, unsigned char *wire) {
@@ -221,9 +223,26 @@ int send_recv_message(unsigned char *request, int requestlen, unsigned char *res
 	 *             response should be received
 	 * OUTPUT: the size (bytes) of the response received
 	 */
+
+	 struct sockaddr_in ip4addr;
+        //  ip4addr.sin_family = AF_INET;
+        //  ip4addr.sin_port = htons(atoi(argv[2]));
+        //  inet_pton(AF_INET, argv[1], &ip4addr.sin_addr);  
+        //  //sfd = socket(AF_INET, SOCK_STREAM, 0);
+        //  sfd = socket(AF_INET, SOCK_DGRAM, 0);
+  
+        //  if (connect(sfd, (struct sockaddr *)&ip4addr, sizeof(struct sockaddr_in)) < 0) {
+
 }
 
 dns_answer_entry *resolve(char *qname, char *server, char *port) {
+	unsigned char *wire[98];
+	dns_rr_type qtype;
+	printf("Hello World!");
+	// printf("%s",qname);
+	// printf("%s",server);
+	// unsigned short queryMessage = create_dns_query(qname, qtype, *wire);
+	
 }
 
 int main(int argc, char *argv[]) {
@@ -238,7 +257,8 @@ int main(int argc, char *argv[]) {
 	} else {
 		port = "53";
 	}
-	ans = ans_list = resolve(argv[1], argv[2], port);
+	printf("Hello\n");
+	ans = resolve(argv[1], argv[2], port);
 	while (ans != NULL) {
 		printf("%s\n", ans->value);
 		ans = ans->next;
